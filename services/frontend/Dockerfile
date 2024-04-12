@@ -1,6 +1,11 @@
-FROM node:latest
+FROM node:alpine
+
 WORKDIR /app
-ADD . .
-RUN npm install -g serve
+
+COPY . .
+
+RUN npm install
+
 EXPOSE 5000
-CMD "serve"
+
+CMD ["npm", "run", "start"]
