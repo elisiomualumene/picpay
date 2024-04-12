@@ -24,8 +24,8 @@ func main() {
 
     mux.HandleFunc("/data", func(writer http.ResponseWriter, request *http.Request) {
         client := redis.NewClient(&redis.Options{Addr: redis_host+":"+redis_port})
-        key := client.Get(client.Context(),"SHAREDKEY")
-        fmt.Fprintf(writer, key.Val())
+        key := client.Get("SHAREDKEY")
+        fmt.Fprint(writer, key.Val())
     })
 
     handler := cors.New(cors.Options{
